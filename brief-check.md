@@ -36,6 +36,31 @@ Track 1 reading list (from the page): Design Sketches: Collective Epistemics (Fo
 ## Discord #announcements — NOT YET CHECKED
 A browser task is required to read the "Alignment Jams" server #announcements (a generic subagent cannot launch browser tasks). The user is already a member (joined 9 Nov ~19:18 WIB, display name "dungki", username "pungki"). Parent agent: run a browser task to read #announcements and #rules for any brief updates, schedule/talk times, or submission-form changes, and report back. Nothing there changes the FlipRate plan unless it announces a template or deadline change.
 
+## Update — sprint page re-checked Tue 10 Nov 2026 ~09:56 WIB (text fetch)
+
+- Sign-ups: **862** (was 761 on 9 Nov, 640 on 8 Nov).
+- Submission requirements UNCHANGED: PDF on official template, max 8 pages
+  excl. references/appendices, abstract 150–250 words, authors/affiliations,
+  mandatory Limitations + Dual-Use appendix. Optional: public repo, 3–5 min video.
+- NEW detail captured — "Recommended Report Structure" (matches our draft):
+  Introduction, Related Work, Methodology, Results, Discussion, Limitations
+  and Dual-Use / Ethical Considerations (required), References.
+- FAQ confirms: "Which template should I use? Always use the one linked on
+  the Guidelines tab. The template in any acceptance email may be older."
+  The Guidelines-tab template link is outlink 44 (same Google Doc as 9 Nov).
+- "Can I submit unfinished work? Yes. Submitting something unfinished is
+  always better than not submitting."
+- Schedule shape: Day 1 (Fri 13 Nov) kickoff/keynote/briefings/team formation;
+  Day 2 (Sat 14 Nov) build + office hours; Day 3 (Sun 15 Nov) final pushes,
+  write-ups, submissions, demos. Full schedule with speaker times "posted
+  closer to the event" — NOT yet up.
+- No submission form element visible in the fetched page text yet (form
+  appears during the sprint).
+- **Template Google Doc STILL behind a sign-in wall** (text fetch returns
+  only "Google Docs: Sign-in"). Still needs a live-browser read signed in
+  as rokirizan — parent agent action, not yet done. Do NOT reformat the
+  draft until the template structure is captured.
+
 ## What did NOT change the plan
 - Dates, prizes ($2,000: 1st $1,000 / 2nd $500 / 3rd $300 / 4th–5th $100), solo entry, Track 1 scope — all as previously known.
 - No submission form visible on the page yet (appears during the sprint).
