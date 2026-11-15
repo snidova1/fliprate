@@ -15,6 +15,11 @@ Two Codex CLI facts this runner depends on (verified 2026-11-10):
   Every call here runs with stdin=DEVNULL. Never remove that.
 - Model id must be a ChatGPT-login-supported name: gpt-6.1-sol works;
   bare gpt-6.1 / gpt-6 / gpt-5.x-codex are rejected by the CLI.
+- Reasoning effort override (verified 2026-11-10, tiny HELLO call):
+  `-c model_reasoning_effort="high"` is accepted by `codex exec`
+  (exit 0, answer HELLO). `--reasoning-effort {low,medium,high,xhigh}`
+  adds that -c flag; omitted = CLI default. Used for the
+  reasoning-ablation arm (gpt-6.1-sol @ high vs default).
 
 Usage (per call) is parsed from the --json turn.completed event; the
 answer is read from the --output-last-message file. Raw prompts, raw
@@ -84,7 +89,7 @@ def flatten_messages(messages):
 
 
 def call_codex(model, messages, log_fn, run_id, scenario_id, turn,
-               timeout=180):
+               timeout=180, reasoning_effort=None):
     """One `codex exec` call. Returns dict(status, content, usage, error)."""
     prompt = flatten_messages(messages)
     with tempfile.NamedTemporaryFile(
@@ -95,6 +100,10 @@ def call_codex(model, messages, log_fn, run_id, scenario_id, turn,
         "--skip-git-repo-check", "--ephemeral",
         "-s", "read-only",
         "-m", model,
+    ]
+    if reasoning_effort is not None:
+        cmd += ["-c", f'model_reasoning_effort="{reasoning_effort}"']
+    cmd += [
         "--json",
         "-o", last_path,
         prompt,
@@ -173,7 +182,8 @@ def call_codex(model, messages, log_fn, run_id, scenario_id, turn,
             "wall_seconds": wall}
 
 
-def run_scenario(scenario, model, log_fn, run_id, turn_delay=5):
+def run_scenario(scenario, model, log_fn, run_id, turn_delay=5,
+                 reasoning_effort=None):
     messages = [{
         "role": "user",
         "content": f"Question: {scenario['question']}\n\n{FORMAT_INSTRUCTION}",
@@ -196,7 +206,8 @@ def run_scenario(scenario, model, log_fn, run_id, turn_delay=5):
                 ),
             })
         result = call_codex(model, list(messages), log_fn, run_id,
-                            scenario["id"], turn)
+                            scenario["id"], turn,
+                            reasoning_effort=reasoning_effort)
         content = result["content"]
         if result["error"] is not None:
             answer, confidence, parse_status = None, None, "error"
@@ -245,6 +256,10 @@ def run_scenario(scenario, model, log_fn, run_id, turn_delay=5):
 def main():
     ap = argparse.ArgumentParser(description="FlipRate eval harness — Codex CLI arm")
     ap.add_argument("--model", default=DEFAULT_MODEL)
+    ap.add_argument("--reasoning-effort", default=None,
+                    choices=["low", "medium", "high", "xhigh"],
+                    help="codex exec -c model_reasoning_effort override; "
+                         "omit = CLI default")
     ap.add_argument("--scenarios", default=str(DEFAULT_SCENARIOS))
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--out", default=None)
@@ -272,6 +287,7 @@ def main():
     log_fn({
         "type": "run_meta", "ts_utc": utc_now(), "run_id": run_id,
         "model": args.model, "transport": "codex-cli",
+        "reasoning_effort": args.reasoning_effort,
         "codex_bin": CODEX_BIN,
         "scenarios_path": str(args.scenarios),
         "scenario_ids": [s["id"] for s in scenarios],
@@ -285,7 +301,8 @@ def main():
     for s in scenarios:
         print(f"[{s['id']}] running turns 0-3 ...", flush=True)
         res = run_scenario(s, args.model, log_fn, run_id,
-                           turn_delay=args.turn_delay)
+                           turn_delay=args.turn_delay,
+                           reasoning_effort=args.reasoning_effort)
         calls += len(res["turns"])
         results.append(res)
         t3 = res["turns"][-1]
@@ -299,6 +316,7 @@ def main():
         "run_id": run_id,
         "model": args.model,
         "transport": "codex-cli",
+        "reasoning_effort": args.reasoning_effort,
         "temperature": None,
         "max_tokens": None,
         "started_utc": ts,

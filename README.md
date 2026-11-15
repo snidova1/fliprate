@@ -1,6 +1,6 @@
 # FlipRate — Multi-Turn Flip Curves Under Escalating Rebuttals
 
-FlipRate measures how a language model's answer **and** its stated confidence change across one, two, and three escalating rebuttals, separating **warranted updating** (changing because the rebuttal is right) from **capitulation** (changing because the rebuttal is forceful even though it is wrong). Each scenario is a ground-truth factual QA item: the model answers (turn 0), then faces three rebuttals of graded evidence quality — gentle doubt (L1), a confident counterclaim citing a source (L2), and social pressure / false consensus (L3) — re-answering with a 0–100 confidence score after each one. The result is a flip curve (cumulative flip rate at L1, L2, L3) plus a confidence trajectory, scored per turn against the evidence the rebuttal actually contained.
+FlipRate measures how a language model's answer **and** its stated confidence change across one, two, and three escalating rebuttals, separating **warranted updating** (changing because the rebuttal is right) from **capitulation** (changing because the rebuttal is forceful even though it is wrong). Each scenario is a ground-truth factual QA item: the model answers (turn 0), then faces three rebuttals of graded evidence quality — gentle doubt (L1), a confident counterclaim citing a source (L2), and social pressure / false consensus (L3) — re-answering with a 0–100 confidence score after each one. The result is a per-turn share-wrong curve (the share of initially-correct false-arm items whose answer equals the rebuttal's wrong value at each level) plus a confidence trajectory, scored per turn against the evidence the rebuttal actually contained.
 
 **Sprint:** Apart Research AI x Epistemics Research Sprint, 13–15 Nov 2026 — **Track 1 (Model Epistemics evals)**. **Entrant:** Pungkas Gadafi (solo). **Submission deadline:** Mon 16 Nov 2026, 18:59 WIB. The sprint report (max 8-page PDF) is submitted separately via the official form; this repo is the public, reproducible artifact behind it.
 
@@ -14,7 +14,7 @@ FlipRate's one-sentence contribution: the first benchmark to trace, on ground-tr
 
 ## ⚠️ Preexisting-work disclosure (sprint rules)
 
-**The harness and scenario set in this repo were built on 9 November 2026, BEFORE the sprint weekend (13–15 Nov 2026). They are preexisting tooling, not sprint work.** The OpenRouter pilot run, the re-pilot, the GPU runs, and the Codex run listed below are also pre-sprint (dated 9–10 Nov 2026) and are labelled as such wherever they appear. Results generated during the sprint weekend (13–15 Nov) are sprint work and will be added here as separate, dated runs; the pre-sprint runs are a baseline, not sprint results. This disclosure is made plainly because the sprint rules require it — building on existing work is allowed, but undisclosed prior work can lead to disqualification.
+**The harness and scenario set in this repo were built on 9 November 2026, BEFORE the sprint weekend (13–15 Nov 2026). They are preexisting tooling, not sprint work.** The OpenRouter pilot run, the re-pilot, the GPU runs, and the Codex runs listed below are also pre-sprint (dated 9–12 Nov 2026) and are labelled as such wherever they appear. Results generated during the sprint weekend (13–15 Nov) are sprint work and are reported as separate, dated arms in §4.8 of the final report (Flint full run, Codex reasoning ablation, Adaption arms, Nemotron re-run); the pre-sprint runs are a baseline, not sprint results. This disclosure is made plainly because the sprint rules require it — building on existing work is allowed, but undisclosed prior work can lead to disqualification.
 
 ## What is in this repo
 
@@ -45,6 +45,9 @@ FlipRate's one-sentence contribution: the first benchmark to trace, on ground-tr
 | [`harness-kaggle/fliprate_gpu.py`](harness-kaggle/fliprate_gpu.py) | Local GPU harness (same protocol/scoring, `transformers` + `bitsandbytes`) |
 | [`harness-kaggle/flip-rate-kaggle.ipynb`](harness-kaggle/flip-rate-kaggle.ipynb) | GPU-arm notebook |
 | [`results/`](results/) | Per-run results JSONs (summaries only; raw request/response logs are not published) |
+| [`final-report.md`](final-report.md) / [`final-report.pdf`](final-report.pdf) | The sprint submission report (8-page main body, abstract 231 words), revised 15 Nov 2026 per a Codex (gpt-6.1-sol) peer review |
+| [`verification/`](verification/) | Independent verification scripts and per-arm recomputed numbers (0 canonical mismatches on every arm) |
+| [`analysis.md`](analysis.md) | Full analysis log (§0–§18), including the sprint-weekend totals (§18) |
 
 ## Results so far (all pre-sprint, 9–10 Nov 2026)
 
@@ -141,4 +144,4 @@ MIT — see [LICENSE](LICENSE). Copyright (c) 2026 Pungkas Gadafi.
 
 ## Status
 
-Pre-sprint baseline (9–10 Nov 2026): design, literature review, scenario set, both harnesses, API pilot + live re-pilot, three GPU full runs, cross-model analysis, draft report — done. Sprint-weekend work (13–15 Nov): full API runs on the fixed harness (Model A 11–12 Nov, Model B 13–14 Nov), sprint-weekend re-runs, and the 8-page report on the official template — in progress, to be added here as dated runs. No video demo is planned.
+Pre-sprint baseline (9–12 Nov 2026): design, literature review, scenario set, both harnesses, API pilot + live re-pilot, three GPU full runs, Codex sol/terra full runs, Nemotron full run (Model A), sol replication, cross-model analysis, draft report — done. Sprint-weekend work (13–15 Nov 2026) — DONE 15 Nov: Flint full run (Model B, halves 13–14 Nov), Codex reasoning ablation (terra HIGH 13 Nov; sol HIGH 14 Nov; sol XHIGH + astra 15 Nov), Adaption arms (qwen3.5-397b + glm-5.2, 13 Nov, $0.87), Nemotron half-1 re-run (15 Nov), cross-model analysis, figure regeneration, and the final report — **files/final-report.pdf (8-page main body, abstract 231 words), built 15 Nov 2026 on the official template structure and revised the same day per a Codex (gpt-6.1-sol) peer review; awaiting the user's approval before submission (deadline Mon 16 Nov 18:59 WIB).** No video demo is planned. This staging area was pushed to GitHub on 15 Nov 2026 (submission snapshot, see `final-report.md` Code and Data); figures attach at submission, not via snapshot push.

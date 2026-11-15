@@ -64,3 +64,24 @@ A browser task is required to read the "Alignment Jams" server #announcements (a
 ## What did NOT change the plan
 - Dates, prizes ($2,000: 1st $1,000 / 2nd $500 / 3rd $300 / 4th–5th $100), solo entry, Track 1 scope — all as previously known.
 - No submission form visible on the page yet (appears during the sprint).
+
+## 2026-11-10 ~11:48 WIB — Official template READ (browser task, view-only, as rokirizan)
+- Source: sprint page Guidelines tab → https://docs.google.com/document/d/17b3JWki-ZkaqdmqGI5d0gof-HwlGuWU9Mc1_klNZXKs/view?usp=sharing ("Apart Research hackathon submission template", view-only, no edits/copy made).
+- Headings in order: PROJECT TITLE / Author line / Affiliation line / Abstract / "How to use this template" / "How your submission will be evaluated" / "Recommended length" / 1. Introduction / 2. Related Work / 3. Methods / 4. Results / 5. Discussion and Limitations (Limitations + Future Work subsections) / 6. Conclusion / Code and Data / Author Contributions (optional) / References / Appendix (optional) / LLM Usage Statement.
+- Page limit: "Recommended length: 4 pages excluding references and appendix" (rough guide: Intro+Related 1p, Methods 1p, Results 1p, Discussion/Conclusion 1p). NOTE: sprint page earlier said max 8 pages — DISCREPANCY to resolve; template's 4-page recommendation governs the draft's target length.
+- Abstract 150–250 words (draft currently 234 ✓).
+- Limitations is a REQUIRED level-2 subsection under §5, NOT an appendix. There is NO separate required Dual-Use appendix — dual-use is only one suggested bullet inside the optional Appendix. NOTE: this corrects the earlier "mandatory Limitations and Dual-Use appendix" reading from the sprint page.
+- References: numbered [1], [2], ... with author, year, title, venue, link/arXiv where available.
+- Figures: strongly encouraged (at least one); numbered Figure 1, 2... / Table 1, 2... with standalone captions; place near first reference; legible text.
+- No font/size/margin/line-spacing rule in the template. Submit as PDF via the form on the sprint page.
+- Deadline per sprint page as reported by this read: Sunday, November 15 at 12:00 PM UTC (= 19:00 WIB Nov 15). NOTE: this conflicts with the earlier AoE deadline (Nov 15 23:59 AoE = Mon 16 Nov 18:59 WIB) — DISCREPANCY to verify; plan against the EARLIER one until confirmed.
+- Reformat of the draft onto this template is DEFERRED until after the full API runs (Nov 11–14) fill the placeholders.
+
+## 2026-11-10 ~11:50 WIB — Discord check (browser task, read-only, as dungki/pungki)
+- #announcements has NO announcement about this sprint (verified 3 ways: full scroll Jul 24–Nov 5, search "Epistemics in:#announcements" 0 results, pinned empty). Latest post Nov 5 (Swarm hackathon recordings).
+- Sprint lives in dedicated channel #aixepistemics-research-sprint: exactly 2 messages, both by Janeth Nov 7 (welcome + pinned useful links → event page anchors #resources, #guidelines, #schedule).
+- Sprint page (re-read 10 Nov, 872 signed up): deadline CONFIRMED **Sunday, November 15, 11:59 PM AoE** (= Mon 16 Nov 18:59 WIB) — the "Nov 15 12:00 PM UTC" from the template read is NOT the submission deadline; plan against AoE.
+- Submission rules (sprint page Guidelines, authoritative): PDF on official template, **max 8 pages excluding references and appendices**; title + abstract 150–250 words; author names/affiliations; **required appendix "Limitations and Dual-Use / Ethical Considerations"**. Optional: public GitHub repo + 3–5 min video demo. Submit via the form on the sprint page (no separate URL); resubmission allowed with the same title.
+- RESOLUTION of the two discrepancies: (1) page length — template recommends 4 pages, page caps at 8; target ~4–6 pages, hard cap 8. (2) Limitations/Dual-Use — keep BOTH: Limitations as §5 subsection (per template) AND the required "Limitations and Dual-Use / Ethical Considerations" appendix (per sprint page). The draft's current Appendix A already matches the page rule.
+- Prizes (current page): $500 for the best project in each track ($2,000 total). Judging: 3 criteria scored 1–5 (Impact Potential & Innovation; Execution Quality; Presentation & Clarity). Results 1–2 weeks after judging; winners contacted directly.
+- Schedule: Day 1 (Fri 13) kickoff/keynote/briefings/track overviews/team formation; Day 2 (Sat 14) build, office hours, feedback checkpoints; Day 3 (Sun 15) final pushes, write-ups, submissions, demos. Support: #help-desk or sprints@apartresearch.com.
