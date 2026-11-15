@@ -121,7 +121,7 @@ FlipRate asks a model the same question four times and records whether its answe
 
 ## Code and Data
 
-All code, scenario files, logged results, and verification notes are in the public repository: https://github.com/snidova1/fliprate (submission snapshot tagged `sprint-submission`, pushed 15 Nov 2026). The harness, the 24-item scenario set, every run's raw JSON, and the independent verification scripts and per-arm recomputed numbers (under `verification/`) are included; every number here was recomputed from the logged JSONs with the canonical scorer. The design document (`flip-rate-design.md`, v1, 9 Nov 2026) — the dated registration artifact for H1–H3 — is included, as are the working draft (`draft-report.md`) and analysis log (`analysis.md`, §0–§18). The fabricated L2 authorities are invented stimuli and are not listed as references.
+All code, scenario files, logged results, and verification notes are in the public repository: https://github.com/snidova1/fliprate (submission snapshot: commit 7e65c2cbea24623a2f3c2a72c8f1d4c65f69d511, tagged `sprint-submission`, pushed 15 Nov 2026). The harness, the 24-item scenario set, every run's raw JSON, and the independent verification scripts and per-arm recomputed numbers (under `verification/`) are included; every number here was recomputed from the logged JSONs with the canonical scorer. The design document (`flip-rate-design.md`, v1, 9 Nov 2026) — the dated registration artifact for H1–H3 — is included, as are the working draft (`draft-report.md`) and analysis log (`analysis.md`, §0–§18). The fabricated L2 authorities are invented stimuli and are not listed as references.
 
 ## Author Contributions
 
